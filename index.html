@@ -1,318 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation | Dr. Alisha & Dr. Prannoy</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<title>Wedding Invitation</title>
 
-    <style>
-        :root {
-            --primary-bg: #4a0404; /* Deep Royal Maroon */
-            --secondary-bg: #2b0202; /* Darker Maroon */
-            --gold: #d4af37;
-            --light-gold: #f3e5ab;
-            --text-light: #fff8e7;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
-        body {
-            margin: 0;
-            font-family: 'Playfair Display', serif;
-            background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
-            color: var(--text-light);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    background: #000;
+    color: white;
+    overflow-x: hidden;
+}
 
-        /* --- ENTRY SCREEN --- */
-        #entry {
-            height: 100vh;
-            background: linear-gradient(to bottom, rgba(43, 2, 2, 0.9), rgba(0, 0, 0, 0.9));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
-            z-index: 20;
-            text-align: center;
-        }
+/* ENTRY SCREEN */
+#entry {
+    height: 100vh;
+    background: linear-gradient(to bottom, #1a1a1a, #000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
-        .entry-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: 70px;
-            color: var(--gold);
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 10px rgba(212, 175, 55, 0.3);
-            animation: fadeIn 2s ease-in-out;
-        }
+#openBtn {
+    padding: 15px 40px;
+    font-size: 20px;
+    border: none;
+    background: gold;
+    color: black;
+    cursor: pointer;
+    border-radius: 30px;
+}
 
-        #openBtn {
-            padding: 15px 50px;
-            font-size: 20px;
-            font-family: 'Playfair Display', serif;
-            border: 2px solid var(--gold);
-            background: transparent;
-            color: var(--gold);
-            cursor: pointer;
-            border-radius: 50px;
-            transition: all 0.4s ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: pulse 2s infinite;
-        }
+/* GATE */
+.gate {
+    position: fixed;
+    width: 50%;
+    height: 100%;
+    background: url('https://i.imgur.com/8Km9tLL.jpg');
+    background-size: cover;
+    top: 0;
+    z-index: 10;
+    transition: 1.5s;
+}
 
-        #openBtn:hover {
-            background: var(--gold);
-            color: var(--secondary-bg);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        }
+.left { left: 0; }
+.right { right: 0; }
 
-        /* --- GATES --- */
-        .gate {
-            position: fixed;
-            width: 50%;
-            height: 100%;
-            background: url('https://i.imgur.com/8Km9tLL.jpg') center/cover;
-            top: 0;
-            z-index: 10;
-            transition: transform 2s cubic-bezier(0.645, 0.045, 0.355, 1);
-            border-right: 2px solid var(--gold);
-        }
+.open .left { transform: translateX(-100%); }
+.open .right { transform: translateX(100%); }
 
-        .gate.right {
-            border-right: none;
-            border-left: 2px solid var(--gold);
-        }
+/* MAIN */
+#main {
+    display: none;
+    text-align: center;
+}
 
-        .left { left: 0; }
-        .right { right: 0; }
+.hero img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
 
-        .open .left { transform: translateX(-100%); }
-        .open .right { transform: translateX(100%); }
+/* TEXT */
+.overlay {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    text-align: center;
+}
 
-        /* --- MAIN CONTENT --- */
-        #main {
-            display: none;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 2s ease-in;
-        }
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 60px;
+    margin: 0;
+}
 
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+h2 {
+    font-size: 22px;
+    letter-spacing: 2px;
+}
 
-        .hero img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.6;
-            z-index: -1;
-        }
+.names {
+    font-size: 50px;
+    margin-top: 20px;
+    color: gold;
+}
 
-        .hero-text h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 80px;
-            color: var(--gold);
-            margin: 0;
-            text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
-        }
+/* EVENTS */
+.section {
+    padding: 60px 20px;
+    background: #111;
+}
 
-        .hero-text p {
-            font-size: 24px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-top: 10px;
-        }
-
-        /* --- SECTIONS & CARDS --- */
-        .section {
-            padding: 80px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .section h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 50px;
-            color: var(--gold);
-            margin-bottom: 20px;
-        }
-
-        .blessings p {
-            font-size: 22px;
-            line-height: 1.8;
-            margin: 5px 0;
-        }
-
-        .events-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .card {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--gold);
-            padding: 40px 30px;
-            width: 250px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--light-gold);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
-        }
-
-        .card h3 {
-            font-size: 28px;
-            color: var(--gold);
-            margin-top: 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            padding-bottom: 15px;
-        }
-
-        .card p {
-            font-size: 20px;
-            margin: 10px 0 0 0;
-        }
-
-        /* --- AUDIO CONTROLS --- */
-        #audio-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--gold);
-            color: var(--primary-bg);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 100;
-            display: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-
-        /* --- ANIMATIONS --- */
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 600px) {
-            .entry-names { font-size: 50px; }
-            .hero-text h1 { font-size: 60px; }
-            .card { width: 100%; }
-        }
-    </style>
+.card {
+    background: #1c1c1c;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+}
+</style>
 </head>
+
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+<!-- ENTRY -->
+<div id="entry">
+    <h1>Dr. Alisha & Dr. Prannoy</h1>
+    <button id="openBtn">Open Invitation</button>
+</div>
 
-    <button id="audio-btn" onclick="toggleMusic()">🎵</button>
+<!-- GATES -->
+<div class="gate left"></div>
+<div class="gate right"></div>
 
-    <div id="entry">
-        <div class="entry-names">Dr. Alisha <br>&<br> Dr. Prannoy</div>
-        <button id="openBtn">Open Invitation</button>
+<!-- MAIN -->
+<div id="main">
+
+<div class="hero">
+    <img src="cover.jpg" alt="Wedding">
+</div>
+
+<div class="section">
+    <h1>With Love & Blessings</h1>
+    <p>Harvinder & Ravinder</p>
+    <p>Sania & Sunia</p>
+</div>
+
+<div class="section">
+    <h2>Wedding Events</h2>
+
+    <div class="card">
+        <h3>Haldi</h3>
+        <p>28 April</p>
     </div>
 
-    <div class="gate left"></div>
-    <div class="gate right"></div>
-
-    <div id="main">
-        <div class="hero">
-            <img src="https://images.unsplash.com/photo-1583939000240-690e16785123?q=80&w=1000&auto=format&fit=crop" alt="Wedding Couple">
-            <div class="hero-text">
-                <h1>Alisha & Prannoy</h1>
-                <p>Are getting married</p>
-            </div>
-        </div>
-
-        <div class="section blessings">
-            <h2>With Love & Blessings</h2>
-            <p>Harvinder & Ravinder</p>
-            <p>Sania & Sunia</p>
-        </div>
-
-        <div class="section">
-            <h2>Wedding Events</h2>
-            <div class="events-container">
-                <div class="card">
-                    <h3>Haldi</h3>
-                    <p><strong>28th April</strong></p>
-                    <p style="font-size: 16px; margin-top:10px; color: #ccc;">Morning Celebration</p>
-                </div>
-
-                <div class="card">
-                    <h3>Wedding</h3>
-                    <p><strong>29th April</strong></p>
-                    <p style="font-size: 16px; margin-top:10px; color: #ccc;">Evening Reception</p>
-                </div>
-            </div>
-        </div>
+    <div class="card">
+        <h3>Wedding</h3>
+        <p>29 April</p>
     </div>
 
-    <script>
-        const music = document.getElementById("bgMusic");
-        const audioBtn = document.getElementById("audio-btn");
-        let isPlaying = false;
+</div>
 
-        document.getElementById("openBtn").onclick = function() {
-            document.body.classList.add("open");
-            
-            music.play();
-            isPlaying = true;
-            
-            setTimeout(() => {
-                document.getElementById("entry").style.display = "none";
-                const mainContent = document.getElementById("main");
-                mainContent.style.display = "block";
-                
-                setTimeout(() => {
-                    mainContent.style.opacity = "1";
-                }, 50);
+</div>
 
-                audioBtn.style.display = "block";
-            }, 1500); 
-        }
+<script>
+document.getElementById("openBtn").onclick = function() {
+    document.body.classList.add("open");
 
-        function toggleMusic() {
-            if (isPlaying) {
-                music.pause();
-                audioBtn.innerHTML = "🔇";
-            } else {
-                music.play();
-                audioBtn.innerHTML = "🎵";
-            }
-            isPlaying = !isPlaying;
-        }
-    </script>
+    setTimeout(() => {
+        document.getElementById("entry").style.display = "none";
+        document.getElementById("main").style.display = "block";
+    }, 1500);
+}
+</script>
 
 </body>
 </html>
