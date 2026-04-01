@@ -1,91 +1,487 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Wedding Invitation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Alisha & Dr. Prannoy | Wedding Invitation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      text-align: center;
-      background: linear-gradient(to right, #ffe0e9, #fff4f7);
-      color: #333;
+    :root{
+      --maroon:#6f102c;
+      --deep:#25070f;
+      --wine:#8d1d3d;
+      --gold:#d8b35d;
+      --gold-soft:#f4e0a6;
+      --cream:#fff8ef;
+      --blush:#fff2f5;
+      --text:#4b2d35;
+      --white:rgba(255,255,255,0.88);
+      --shadow:0 20px 50px rgba(63, 10, 27, 0.14);
     }
 
-    h1 {
-      margin-top: 40px;
-      font-size: 36px;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      scroll-behavior:smooth;
     }
 
-    p {
-      font-size: 18px;
+    body{
+      font-family:'Poppins',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(216,179,93,.18), transparent 16%),
+        radial-gradient(circle at bottom left, rgba(143,29,61,.11), transparent 18%),
+        linear-gradient(135deg, #fff8ef 0%, #fff2f7 52%, #fffaf5 100%);
+      overflow-x:hidden;
     }
 
-    .card {
-      background: white;
-      margin: 20px auto;
-      padding: 20px;
-      max-width: 400px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    a{
+      text-decoration:none;
+      color:inherit;
     }
 
-    h2 {
-      color: #b04a5a;
+    .preloader{
+      position:fixed;
+      inset:0;
+      background:linear-gradient(135deg, #2a0913, #5f0d25, #22070e);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      transition:opacity .8s ease, visibility .8s ease;
     }
 
-    img {
-      width: 100%;
-      border-radius: 10px;
+    .preloader.hide{
+      opacity:0;
+      visibility:hidden;
     }
 
-    .btn {
-      background: #b04a5a;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 25px;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 10px;
+    .preloader-box{
+      text-align:center;
+      color:#fff;
+      padding:20px;
     }
-  </style>
-</head>
 
-<body>
+    .preloader-monogram{
+      width:110px;
+      height:110px;
+      border:2px solid rgba(216,179,93,.85);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 18px;
+      font-family:'Cinzel',serif;
+      font-size:30px;
+      color:var(--gold-soft);
+      box-shadow:0 0 30px rgba(216,179,93,.25);
+      animation:pulse 2s infinite ease-in-out;
+    }
 
-<h1>💍 Dr. Alisha ❤️ Dr. Prannoy 💍</h1>
+    .preloader-title{
+      font-family:'Great Vibes',cursive;
+      font-size:40px;
+      color:#fff2cc;
+      margin-bottom:8px;
+    }
 
-<p>With the blessings of our family, we invite you to celebrate our wedding</p>
+    .preloader-sub{
+      font-size:13px;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      color:#f3dcb0;
+    }
 
-<div class="card">
-  <h2>📅 Wedding Date</h2>
-  <p>29 April 2026</p>
-</div>
+    @keyframes pulse{
+      0%,100%{transform:scale(1); box-shadow:0 0 30px rgba(216,179,93,.2);}
+      50%{transform:scale(1.06); box-shadow:0 0 45px rgba(216,179,93,.35);}
+    }
 
-<div class="card">
-  <h2>📍 Venue</h2>
-  <p>Your Venue Name, City</p>
-</div>
+    .sparkles span,
+    .petals span{
+      position:fixed;
+      pointer-events:none;
+      z-index:0;
+    }
 
-<div class="card">
-  <h2>🌸 Wedding Events</h2>
-  <p>Haldi – 27 April 2026</p>
-  <p>Mehendi – 28 April 2026</p>
-  <p>Wedding – 29 April 2026</p>
-</div>
+    .sparkles span{
+      width:4px;
+      height:4px;
+      background:rgba(255,255,255,.9);
+      border-radius:50%;
+      box-shadow:0 0 10px rgba(255,255,255,.7);
+      animation:twinkle linear infinite;
+    }
 
-<div class="card">
-  <h2>📸 Our Moments</h2>
-  <img src="https://via.placeholder.com/400">
-</div>
+    .petals span{
+      width:18px;
+      height:18px;
+      background:linear-gradient(135deg, rgba(216,179,93,.25), rgba(143,29,61,.18));
+      border-radius:50% 0 50% 50%;
+      transform:rotate(45deg);
+      top:-10vh;
+      animation:fall linear infinite;
+    }
 
-<div class="card">
-  <h2>📍 Location</h2>
-  <a href="https://maps.google.com" class="btn">Open Map</a>
-</div>
+    .sparkles span:nth-child(1){top:8%;left:10%;animation-duration:4s;}
+    .sparkles span:nth-child(2){top:18%;left:82%;animation-duration:5s;}
+    .sparkles span:nth-child(3){top:44%;left:14%;animation-duration:3.8s;}
+    .sparkles span:nth-child(4){top:36%;left:70%;animation-duration:4.6s;}
+    .sparkles span:nth-child(5){top:72%;left:88%;animation-duration:3.5s;}
+    .sparkles span:nth-child(6){top:84%;left:22%;animation-duration:5.2s;}
+    .sparkles span:nth-child(7){top:62%;left:52%;animation-duration:4.2s;}
+    .sparkles span:nth-child(8){top:24%;left:48%;animation-duration:4.8s;}
 
-<p>✨ With love & blessings from family ✨</p>
+    .petals span:nth-child(1){left:8%;animation-duration:14s;animation-delay:0s;}
+    .petals span:nth-child(2){left:18%;animation-duration:12s;animation-delay:2s;}
+    .petals span:nth-child(3){left:30%;animation-duration:15s;animation-delay:1s;}
+    .petals span:nth-child(4){left:44%;animation-duration:11s;animation-delay:3s;}
+    .petals span:nth-child(5){left:58%;animation-duration:16s;animation-delay:5s;}
+    .petals span:nth-child(6){left:72%;animation-duration:13s;animation-delay:1.5s;}
+    .petals span:nth-child(7){left:86%;animation-duration:15s;animation-delay:4s;}
 
-</body>
-</html>
+    @keyframes twinkle{
+      0%,100%{opacity:.2;transform:scale(.7);}
+      50%{opacity:1;transform:scale(1.4);}
+    }
+
+    @keyframes fall{
+      0%{transform:translateY(-10vh) translateX(0) rotate(45deg);opacity:0;}
+      10%{opacity:1;}
+      100%{transform:translateY(120vh) translateX(60px) rotate(405deg);opacity:0;}
+    }
+
+    .music-btn{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:99;
+      border:none;
+      border-radius:999px;
+      padding:14px 18px;
+      font-weight:700;
+      font-size:14px;
+      color:#5b3700;
+      background:linear-gradient(135deg, #f8d77f, #d8b35d);
+      box-shadow:0 10px 24px rgba(216,179,93,.34);
+      cursor:pointer;
+    }
+
+    .top-nav{
+      position:fixed;
+      top:14px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:90;
+      backdrop-filter:blur(10px);
+      background:rgba(255,255,255,.6);
+      border:1px solid rgba(216,179,93,.3);
+      border-radius:999px;
+      padding:10px 16px;
+      box-shadow:0 10px 24px rgba(70,20,30,.08);
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
+      max-width:92%;
+    }
+
+    .top-nav a{
+      font-size:13px;
+      font-weight:600;
+      color:var(--maroon);
+    }
+
+    .section{
+      position:relative;
+      z-index:1;
+      padding:80px 20px;
+    }
+
+    .container{
+      max-width:1180px;
+      margin:0 auto;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      padding:110px 20px 70px;
+    }
+
+    .hero-card{
+      width:100%;
+      max-width:1040px;
+      border-radius:34px;
+      padding:52px 26px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.78), rgba(255,249,239,.94));
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(216,179,93,.34);
+      box-shadow:var(--shadow);
+      text-align:center;
+      animation:fadeUp 1.2s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-card::before,
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      filter:blur(40px);
+      z-index:0;
+    }
+
+    .hero-card::before{
+      background:rgba(216,179,93,.14);
+      top:-60px;
+      left:-40px;
+    }
+
+    .hero-card::after{
+      background:rgba(143,29,61,.10);
+      bottom:-60px;
+      right:-40px;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:1;
+    }
+
+    .ganesh{
+      font-size:18px;
+      font-weight:700;
+      color:var(--maroon);
+      margin-bottom:18px;
+      letter-spacing:1px;
+    }
+
+    .invite-label{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(216,179,93,.42);
+      color:#a67516;
+      background:rgba(255,255,255,.8);
+      font-size:12px;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    .monogram{
+      width:108px;
+      height:108px;
+      border:2px solid rgba(216,179,93,.74);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 18px;
+      font-family:'Cinzel',serif;
+      font-size:34px;
+      color:var(--maroon);
+      background:rgba(255,255,255,.72);
+      box-shadow:0 8px 22px rgba(216,179,93,.18);
+    }
+
+    .hero h1{
+      font-family:'Cinzel',serif;
+      font-size:clamp(34px, 7vw, 74px);
+      line-height:1.18;
+      color:var(--maroon);
+      margin-bottom:14px;
+    }
+
+    .hero .script{
+      font-family:'Great Vibes',cursive;
+      font-size:clamp(28px, 5vw, 54px);
+      color:#bf8a22;
+      margin-bottom:14px;
+    }
+
+    .hero-desc{
+      max-width:840px;
+      margin:0 auto 24px;
+      line-height:1.9;
+      font-size:16px;
+      color:#63424a;
+    }
+
+    .date-pill{
+      display:inline-block;
+      padding:13px 24px;
+      border-radius:999px;
+      background:linear-gradient(135deg, rgba(111,16,44,.96), rgba(148,32,64,.92));
+      color:#fff8ef;
+      font-weight:700;
+      letter-spacing:.5px;
+      margin-bottom:26px;
+      box-shadow:0 12px 28px rgba(111,16,44,.22);
+    }
+
+    .countdown{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      max-width:760px;
+      margin:0 auto 28px;
+    }
+
+    .count-box{
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(216,179,93,.22);
+      padding:18px 10px;
+      border-radius:20px;
+      box-shadow:0 10px 24px rgba(70,20,30,.06);
+    }
+
+    .count-box span{
+      display:block;
+      font-size:32px;
+      font-weight:700;
+      color:var(--maroon);
+      margin-bottom:6px;
+    }
+
+    .count-box small{
+      font-size:12px;
+      letter-spacing:1.8px;
+      text-transform:uppercase;
+      color:#7c6369;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:14px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 24px;
+      border-radius:999px;
+      font-weight:700;
+      transition:.3s ease;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--maroon), #962a49);
+      color:#fff;
+      box-shadow:0 12px 26px rgba(111,16,44,.23);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.86);
+      border:1px solid rgba(111,16,44,.2);
+      color:var(--maroon);
+    }
+
+    .section-title{
+      text-align:center;
+      font-family:'Cinzel',serif;
+      font-size:clamp(28px, 4vw, 44px);
+      color:var(--maroon);
+      margin-bottom:12px;
+    }
+
+    .section-script{
+      text-align:center;
+      font-family:'Great Vibes',cursive;
+      font-size:clamp(24px, 4vw, 40px);
+      color:#bf8a22;
+      margin-bottom:10px;
+    }
+
+    .section-desc{
+      max-width:760px;
+      margin:0 auto 34px;
+      text-align:center;
+      color:#6d5359;
+      line-height:1.85;
+    }
+
+    .glass-card{
+      background:var(--white);
+      border:1px solid rgba(216,179,93,.26);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .family-grid,
+    .venue-grid,
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:24px;
+    }
+
+    .family-card,
+    .venue-card{
+      padding:28px 24px;
+    }
+
+    .family-card h3,
+    .venue-card h3{
+      font-family:'Cinzel',serif;
+      color:var(--maroon);
+      font-size:24px;
+      margin-bottom:12px;
+    }
+
+    .family-card p,
+    .venue-card p{
+      line-height:1.85;
+      margin:6px 0;
+      color:#5e4249;
+    }
+
+    .blessing{
+      text-align:center;
+      margin:0 auto 24px;
+      max-width:900px;
+      padding:22px;
+      font-size:17px;
+      line-height:1.8;
+      color:#63454c;
+    }
+
+    .couple-feature{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+      align-items:center;
+    }
+
+    .photo-frame{
+      background:linear-gradient(145deg, #fff, #fff7ec);
+      border:1px solid rgba(216,179,93,.32);
+      border-radius:30px;
+      padding:16px;
+      box-shadow:var(--shadow);
+      animation:floaty 5s ease-in-out infinite;
+    }
+
+    .photo-frame img{
+      width:100%;
+      height:100%;
+      min-height:
