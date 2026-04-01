@@ -109,21 +109,22 @@ h2 {
 
 <body>
 
-<!-- ENTRY -->
+<audio id="bgMusic" loop>
+    <source src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Shehnai_music_for_weddings.mp3" type="audio/mpeg">
+</audio>
+
 <div id="entry">
     <h1>Dr. Alisha & Dr. Prannoy</h1>
     <button id="openBtn">Open Invitation</button>
 </div>
 
-<!-- GATES -->
 <div class="gate left"></div>
 <div class="gate right"></div>
 
-<!-- MAIN -->
 <div id="main">
 
 <div class="hero">
-    <img src="cover.jpg" alt="Wedding">
+    <img src="PASTE_IMAGE_LINK_HERE" alt="Wedding">
 </div>
 
 <div class="section">
@@ -152,6 +153,9 @@ h2 {
 <script>
 document.getElementById("openBtn").onclick = function() {
     document.body.classList.add("open");
+
+    // ADDED: Triggers the music to start playing when the button is clicked
+    document.getElementById("bgMusic").play();
 
     setTimeout(() => {
         document.getElementById("entry").style.display = "none";
