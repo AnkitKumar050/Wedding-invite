@@ -42,20 +42,21 @@ body {
     transform: scale(1.05);
 }
 
-/* GATE */
+/* GATE - LADY IMAGE REMOVED */
 .gate {
     position: fixed;
     width: 50%;
     height: 100%;
-    background: url('https://i.imgur.com/8Km9tLL.jpg');
-    background-size: cover;
+    /* Replaced the image link with an elegant dark red/maroon gradient */
+    background: linear-gradient(to right, #4a0404, #2b0202); 
+    border: 2px solid gold; /* Added a gold border for a premium feel */
     top: 0;
     z-index: 10;
     transition: 1.5s;
 }
 
-.left { left: 0; }
-.right { right: 0; }
+.left { left: 0; border-right: none; }
+.right { right: 0; border-left: none; }
 
 .open .left { transform: translateX(-100%); }
 .open .right { transform: translateX(100%); }
@@ -64,7 +65,13 @@ body {
 #main {
     display: none;
     text-align: center;
-    padding-top: 50px; /* Added a little padding so text isn't glued to the top */
+}
+
+.hero img {
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain; /* Ensures your entire caricature is visible without cropping */
+    margin-top: 20px;
 }
 
 /* TEXT */
@@ -87,7 +94,7 @@ h2 {
 
 /* EVENTS */
 .section {
-    padding: 40px 20px;
+    padding: 60px 20px;
     background: #111;
 }
 
@@ -137,26 +144,30 @@ h2 {
 
 <div id="main">
 
-    <div class="section">
-        <h1>With Love & Blessings</h1>
-        <p>Harvinder & Ravinder</p>
-        <p>Sania & Sunia</p>
+<div class="hero">
+    <img src="caricature.png" alt="Wedding Caricature">
+</div>
+
+<div class="section">
+    <h1>With Love & Blessings</h1>
+    <p>Harvinder & Ravinder</p>
+    <p>Sania & Sunia</p>
+</div>
+
+<div class="section">
+    <h2>Wedding Events</h2>
+
+    <div class="card">
+        <h3>Haldi</h3>
+        <p>28 April</p>
     </div>
 
-    <div class="section">
-        <h2>Wedding Events</h2>
-
-        <div class="card">
-            <h3>Haldi</h3>
-            <p>28 April</p>
-        </div>
-
-        <div class="card">
-            <h3>Wedding</h3>
-            <p>29 April</p>
-        </div>
-
+    <div class="card">
+        <h3>Wedding</h3>
+        <p>29 April</p>
     </div>
+
+</div>
 
 </div>
 
@@ -169,13 +180,15 @@ h2 {
         document.body.classList.add("open");
         
         // Start music when gates open
-        music.play();
+        music.play().catch(error => {
+            console.log("Audio playback was prevented by the browser.");
+        });
         isPlaying = true;
 
         setTimeout(() => {
             document.getElementById("entry").style.display = "none";
             document.getElementById("main").style.display = "block";
-            audioBtn.style.display = "block"; // Show the music button
+            audioBtn.style.display = "block"; 
         }, 1500);
     }
 
